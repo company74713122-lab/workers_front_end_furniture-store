@@ -119,7 +119,7 @@ export default function AdminProducts() {
               onChange={(e) => setCategoryFilter(e.target.value)}
               className="px-4 py-3 bg-sage-50 border-2 border-transparent rounded-xl focus:outline-none focus:border-sage-500 transition-all"
             >
-<option value="Living Room">جميع الاصناف </option>
+<option value="">جميع الاصناف </option>
 <option value="Living Room">غرفة المعيشة</option>
 <option value="Bedroom">غرفة النوم</option>
 <option value="Dining Room">غرفة الطعام</option>
