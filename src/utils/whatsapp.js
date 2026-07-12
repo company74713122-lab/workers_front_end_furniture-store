@@ -5,7 +5,6 @@ import { WHATSAPP_NUMBER } from '../config/constants';
  */
 export const generateSingleProductMessage = (product) => {
   const message = `
-مرحباً ALFEIN 
 
 أنا مهتم بهذا المنتج:
 
@@ -54,7 +53,7 @@ ${offerTotal ? ` الإجمالي (بعد الخصم): LE ${offerTotal.toLocaleS
     .join('\n\n');
 
   const message = `
-مرحباً ALFEIN 
+
 
 أريد طلب المنتجات التالية:
 
@@ -64,7 +63,7 @@ ${'━'.repeat(30)}
  *المجموع الكلي: LE ${total.toLocaleString()}*
 ${'━'.repeat(30)}
 
-أرجو تأكيد الطلب وإفادتي بطريقة الدفع والتوصيل. شكراً! 🙏
+
   `.trim();
 
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
