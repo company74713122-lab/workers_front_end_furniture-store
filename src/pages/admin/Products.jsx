@@ -19,8 +19,8 @@ export default function AdminProducts() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
-  const [categoryFilter, setCategoryFilter] = useState('');
-  const [statusFilter, setStatusFilter] = useState('');
+  const [categoryFilter, setCategoryFilter] = useState(''); // ✅ جميع الفئات
+  const [statusFilter, setStatusFilter] = useState('active'); // ✅ نشط كـ default
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
@@ -144,6 +144,17 @@ export default function AdminProducts() {
             >
               بحث
             </button>
+             <button
+            onClick={() => {
+              setCategoryFilter('');
+              setStatusFilter('actigve');
+              setSearchTerm('');
+    setCurrentPage(1);
+            }}
+            className="px-6 py-3 bg-gray-500 text-white rounded-xl hover:bg-gray-600 transition-all"
+          >
+            إعادة تعيين
+          </button>
           </div>
         </div>
 
