@@ -38,9 +38,9 @@ export default function LocalBusinessSchema() {
       },
     ],
     sameAs: [
-      'https://facebook.com/alfein',
-      'https://instagram.com/alfein',
-      'https://twitter.com/alfein',
+      'https://facebook.com/BLAL',
+      'https://instagram.com/BLAL',
+      'https://twitter.com/BLAL',
     ],
   };
 

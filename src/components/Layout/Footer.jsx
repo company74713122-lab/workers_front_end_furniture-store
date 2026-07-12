@@ -18,7 +18,7 @@ export default function Footer() {
               </div>
               <div>
                 <span className="text-2xl font-bold font-display text-white">
-                  ALFEIN
+                  BLAL
                 </span>
                 <p className="text-xs text-cream-300">أثاث منزلي فاخر</p>
               </div>
@@ -139,7 +139,7 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="border-t border-white/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-cream-400 text-sm">
-          <p>&copy; 2026 ALFEIN. جميع الحقوق محفوظة.</p>
+          <p>&copy; 2026 BLAL. جميع الحقوق محفوظة.</p>
           <div className="flex gap-6">
             <a href="#" className="hover:text-gold-400 transition-colors">
               سياسة الخصوصية

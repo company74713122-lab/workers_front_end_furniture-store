@@ -51,7 +51,7 @@ export default function Header() {
               +20 101 234 5678
             </span>
             <span className="text-gold-400/60">|</span>
-            <span>info@alfein.com</span>
+            <span>info@BLAL.com</span>
           </div>
           <div className="flex items-center gap-2">
             <span>✨</span>
@@ -80,7 +80,7 @@ export default function Header() {
               </div>
               <div className="hidden sm:block">
                 <span className="text-2xl font-bold font-display text-royal-950 tracking-tight">
-                  ALFEIN
+                  BLAL
                 </span>
                 <p className="text-[10px] text-gold-700 font-medium tracking-widest -mt-1">
                   ROYAL FURNITURE

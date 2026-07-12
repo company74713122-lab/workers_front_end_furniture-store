@@ -7,12 +7,12 @@ export default function OrganizationSchema() {
     name: 'BLAL',
     alternateName: 'BLAL Furniture Gallery',
     url: 'https://furniture-store-5d3.pages.dev',
-    logo: 'https://alfein.com/logo.png',
+    logo: 'https://BLAL.com/logo.png',
     description: 'معرض متخصص في الأثاث المنزلي الراقي - نقدم لك أفضل القطع المصنوعة بعناية لتناسب ذوقك الرفيع',
     // foundingDate: '2016',
     founder: {
       '@type': 'Person',
-      name: 'ALFEIN Team',
+      name: 'BLAL Team',
     },
     address: {
       '@type': 'PostalAddress',
@@ -26,9 +26,9 @@ export default function OrganizationSchema() {
       availableLanguage: ['Arabic', 'English'],
     },
     sameAs: [
-      'https://facebook.com/alfein',
-      'https://instagram.com/alfein',
-      'https://twitter.com/alfein',
+      'https://facebook.com/BLAL',
+      'https://instagram.com/BLAL',
+      'https://twitter.com/BLAL',
     ],
   };
 

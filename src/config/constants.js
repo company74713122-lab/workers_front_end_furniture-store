@@ -3,10 +3,10 @@ export const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER || '20101234
 
 // ✅ معلومات المتجر
 export const STORE_INFO = {
-  name: 'ALFEIN',
+  name: 'BLAL',
   tagline: 'أثاث منزلي فاخر',
   description: 'معرض متخصص في الأثاث المنزلي الراقي - نقدم لك أفضل القطع المصنوعة بعناية لتناسب ذوقك الرفيع',
-  email: 'info@alfein.com',
+  email: 'info@BLAL.com',
   phone: '+20 101 234 5678',
   address:"مصر , دمياط",
   whatsapp: '201020353179',
@@ -70,9 +70,9 @@ export const STATUS = [
 
 // ✅ روابط التواصل الاجتماعي
 export const SOCIAL_LINKS = {
-  facebook: 'https://facebook.com/alfein',
-  instagram: 'https://instagram.com/alfein',
-  twitter: 'https://twitter.com/alfein',
+  facebook: 'https://facebook.com/BLAL',
+  instagram: 'https://instagram.com/BLAL',
+  twitter: 'https://twitter.com/BLAL',
   whatsapp: 'https://wa.me/201012345678',
 };
 

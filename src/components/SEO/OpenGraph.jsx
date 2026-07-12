@@ -30,8 +30,8 @@ export default function OpenGraph({
       <meta property="twitter:title" content={title} />
       <meta property="twitter:description" content={description} />
       <meta property="twitter:image" content={image} />
-      <meta property="twitter:site" content="@alfein_furniture" />
-      <meta property="twitter:creator" content="@alfein_furniture" />
+      <meta property="twitter:site" content="@BLAL_furniture" />
+      <meta property="twitter:creator" content="@BLAL_furniture" />
     </Helmet>
   );
 }

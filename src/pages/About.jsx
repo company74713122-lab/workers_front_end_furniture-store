@@ -60,7 +60,7 @@ export default function About() {
       description="تعرف على قصة BLAL أكثر من 10 سنوات خبرة في عالم الأثاث المنزلي الفاخر في مصر. نقدم لك أفضل القطع المصنوعة بعناية."
       keywords="من نحن, BLAL, قصة المعرض, أثاث مصر, معرض أثاث"
       canonicalUrl="https://furniture-store-5d3.pages.dev/about"
-      // ogImage="https://alfein.com/about-og.jpg"
+      // ogImage="https://BLAL.com/about-og.jpg"
     />
     <div>
       {/* Hero Section */}
@@ -80,7 +80,7 @@ export default function About() {
             </div>
 
             <h1 className="text-5xl md:text-6xl font-bold font-display mb-6 leading-tight">
-              قصة <span className="text-gold-400">ALFEIN</span>
+              قصة <span className="text-gold-400">BLAL</span>
             </h1>
 
             <p className="text-xl md:text-2xl text-white/80 leading-relaxed">
@@ -103,7 +103,7 @@ export default function About() {
                 قصتنا <span className="gradient-text">تبدأ من هنا</span>
               </h2>
               <p className="text-lg text-charcoal/70 leading-relaxed mb-6">
-                بدأت رحلة ALFEIN قبل أكثر من 10 سنوات بحلم بسيط: تقديم أثاث
+                بدأت رحلة BLAL قبل أكثر من 10 سنوات بحلم بسيط: تقديم أثاث
                 منزلي يجمع بين الجمال والجودة والسعر العادل. اليوم، نفخر بأننا
                 أصبحنا واحدة من أبرز المعارض المتخصصة في الأثاث المنزلي.
               </p>
@@ -153,7 +153,7 @@ export default function About() {
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold font-display text-charcoal mb-3">
-              لماذا <span className="gradient-text">ALFEIN</span>؟
+              لماذا <span className="gradient-text">BLAL</span>؟
             </h2>
             <p className="text-charcoal/60 text-lg">
               ما يميزنا عن غيرنا

@@ -164,7 +164,7 @@ export default function ProductDetails() {
   const handleShare = async () => {
     const shareData = {
       title: product.name,
-      text: `شاهد هذا المنتج الرائع من ALFEIN: ${product.name}`,
+      text: `شاهد هذا المنتج الرائع من BLAL: ${product.name}`,
       url: window.location.href,
     };
 
