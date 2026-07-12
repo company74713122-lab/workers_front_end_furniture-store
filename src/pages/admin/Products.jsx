@@ -119,6 +119,7 @@ export default function AdminProducts() {
               onChange={(e) => setCategoryFilter(e.target.value)}
               className="px-4 py-3 bg-sage-50 border-2 border-transparent rounded-xl focus:outline-none focus:border-sage-500 transition-all"
             >
+<option value="Living Room">جميع الاصناف </option>
 <option value="Living Room">غرفة المعيشة</option>
 <option value="Bedroom">غرفة النوم</option>
 <option value="Dining Room">غرفة الطعام</option>
@@ -133,7 +134,6 @@ export default function AdminProducts() {
               onChange={(e) => setStatusFilter(e.target.value)}
               className="px-4 py-3 bg-sage-50 border-2 border-transparent rounded-xl focus:outline-none focus:border-sage-500 transition-all"
             >
-              <option value="">جميع الحالات</option>
               <option value="active">نشط</option>
               <option value="inactive">غير نشط</option>
               <option value="out_of_stock">نفذ من المخزون</option>
@@ -147,7 +147,7 @@ export default function AdminProducts() {
              <button
             onClick={() => {
               setCategoryFilter('');
-              setStatusFilter('actigve');
+              setStatusFilter('active');
               setSearchTerm('');
     setCurrentPage(1);
             }}
