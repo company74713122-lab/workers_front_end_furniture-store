@@ -35,7 +35,7 @@ export const MATERIALS = [
   { value: 'Marble', label: 'رخام' },
   { value: 'MDF', label: 'MDF' },
   { value: 'Upholstered', label: 'منجد' },
-  { value: 'Rattan', label: 'اخري لا يظهر اسم اللون للسمتخدم' },
+  { value: 'Rattan', label: 'اخري لا يظهر اسم المادة للسمتخدم' },
 ];
 
 // ✅ الأحجام
