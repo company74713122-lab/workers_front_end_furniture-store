@@ -1,0 +1,18 @@
+# Robots.txt for ALFEIN
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://furniture-store-5d3.pages.dev/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1
+
+# Disallow admin pages
+Disallow: /admin/
+Disallow: /cart/
+Disallow: /wishlist/
+
+# Allow important pages
+Allow: /products/
+Allow: /about/

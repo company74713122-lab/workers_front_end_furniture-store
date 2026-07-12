@@ -1,0 +1,484 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Tajawal:wght@300;400;500;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+@media (max-width: 640px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+body {
+  font-family: 'Tajawal', 'Inter', system-ui, sans-serif;
+  background-color: #F7F7F7; /* ✅ خلفية رمادية فاتحة */
+  color: #0A0A0A;
+  overflow-x: hidden;
+  direction: rtl;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F7F7F7;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #D4AF37, #947418);
+  border-radius: 10px;
+  border: 2px solid #F7F7F7;
+}
+
+::selection {
+  background: #D4AF37;
+  color: #0A0A0A;
+}
+
+/* ═══════════════════════════════════════════════════════
+   PRODUCT CARD IMPROVEMENTS
+   ═══════════════════════════════════════════════════════ */
+
+/* ✅ كارت محسّن - Shadow أخف، Border رمادي، Radius 16px */
+.product-card {
+  background: white;
+  border-radius: 16px;
+  border: 1px solid #E5E5E5;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border-color: #D4AF37;
+}
+
+/* ✅ الصورة بنسبة ثابتة */
+.product-image-container {
+  position: relative;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  background: #F0F0F0;
+}
+
+.product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.product-card:hover .product-image {
+  transform: scale(1.05);
+}
+
+/* ✅ زر القلب - أكبر مع Shadow */
+.wishlist-btn {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.wishlist-btn:hover {
+  transform: scale(1.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.wishlist-btn.active {
+  background: #EF4444;
+  color: white;
+}
+
+.wishlist-btn.active svg {
+  fill: currentColor;
+}
+
+/* ✅ Badge الخصم - أصغر وأقرب للحافة */
+.discount-badge {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
+  color: white;
+  box-shadow: 0 2px 6px rgba(239, 68, 68, 0.3);
+}
+
+/* ✅ Badge جديد */
+.new-badge {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  color: white;
+  box-shadow: 0 2px 6px rgba(16, 185, 129, 0.3);
+}
+
+/* ✅ Hierarchy: صورة → اسم → سعر → واتساب → أضف */
+.product-content {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ✅ اسم المنتج - سطرين مع ... */
+.product-name {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #1A1A1A;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 2.8em;
+}
+
+.product-name:hover {
+  color: #D4AF37;
+}
+
+/* ✅ السعر - 24px Bold */
+.product-price {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1A1A1A;
+}
+
+.product-price.discounted {
+  color: #DC2626;
+}
+
+.product-price-old {
+  font-size: 13px;
+  color: #9CA3AF;
+  text-decoration: line-through;
+  font-weight: 400;
+}
+
+/* ✅ أزرار محسّنة */
+.btn-whatsapp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px;
+  background: #25D366;
+  color: white;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-whatsapp:hover {
+  background: #128C7E;
+  transform: translateY(-1px);
+}
+
+.btn-whatsapp:active {
+  transform: scale(0.97);
+}
+
+.btn-add-cart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px;
+  background: #1A1A1A;
+  color: white;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-add-cart:hover {
+  background: #D4AF37;
+  transform: translateY(-1px);
+}
+
+.btn-add-cart:active {
+  transform: scale(0.97);
+}
+
+/* ✅ Ripple Effect */
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.ripple:active::after {
+  width: 200px;
+  height: 200px;
+}
+
+/* ═══════════════════════════════════════════════════════
+   SKELETON LOADING
+   ═══════════════════════════════════════════════════════ */
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    #E5E5E5 25%,
+    #F0F0F0 50%,
+    #E5E5E5 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+  border-radius: 8px;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.skeleton-image {
+  aspect-ratio: 4/3;
+  border-radius: 16px 16px 0 0;
+}
+
+.skeleton-text {
+  height: 14px;
+  margin-bottom: 8px;
+}
+
+.skeleton-text-short {
+  width: 60%;
+  height: 20px;
+}
+
+/* ══════════════════════════════════════════════════════
+   FILTERS & HEADER
+   ═══════════════════════════════════════════════════════ */
+
+.filter-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: white;
+  border: 1px solid #E5E5E5;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1A1A1A;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.filter-btn:hover {
+  border-color: #D4AF37;
+  background: #FFFBF0;
+}
+
+.filter-btn.active {
+  background: #1A1A1A;
+  color: #D4AF37;
+  border-color: #1A1A1A;
+}
+
+.filter-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 20px;
+  height: 20px;
+  background: #EF4444;
+  color: white;
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(239, 68, 68, 0.3);
+}
+
+/* ✅ Header محسّن */
+.products-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  background: white;
+  border-bottom: 1px solid #E5E5E5;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+
+.products-count {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #6B7280;
+}
+
+.products-count strong {
+  color: #1A1A1A;
+  font-weight: 700;
+}
+
+/* ═══════════════════════════════════════════════════════
+   ANIMATIONS
+   ═══════════════════════════════════════════════════════ */
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.slide-up {
+  animation: slideUp 0.5s ease-out;
+}
+
+/* ══════════════════════════════════════════════════════
+   RATING & INFO
+   ═══════════════════════════════════════════════════════ */
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: #6B7280;
+}
+
+.rating-stars {
+  display: flex;
+  gap: 2px;
+  color: #F59E0B;
+}
+
+.rating-stars svg {
+  width: 12px;
+  height: 12px;
+}
+
+.availability {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.availability.in-stock {
+  color: #10B981;
+}
+
+.availability.low-stock {
+  color: #F59E0B;
+}
+
+.availability.out-of-stock {
+  color: #EF4444;
+}
+
+/* ═══════════════════════════════════════════════════════
+   UTILITIES
+   ═══════════════════════════════════════════════════════ */
+
+.gradient-gold {
+  background: linear-gradient(135deg, #D4AF37 0%, #F4DF8A 50%, #D4AF37 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.luxury-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: #D4AF37;
+  margin: 1rem 0;
+}
+
+.luxury-divider::before,
+.luxury-divider::after {
+  content: '';
+  flex: 1;
+  max-width: 100px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+}
+
+.page-transition {
+  animation: fadeIn 0.4s ease-out;
+}
+
+/* Hide Scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
