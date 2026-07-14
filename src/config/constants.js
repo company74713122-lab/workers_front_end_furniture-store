@@ -1,5 +1,5 @@
 // ✅ رقم واتساب المتجر - غيّره إلى رقمك الحقيقي
-export const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER || '201012345678';
+export const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER || ;
 
 // ✅ معلومات المتجر
 export const STORE_INFO = {
