@@ -7,7 +7,7 @@ export const STORE_INFO = {
   tagline: 'أثاث منزلي فاخر',
   description: 'معرض متخصص في الأثاث المنزلي الراقي - نقدم لك أفضل القطع المصنوعة بعناية لتناسب ذوقك الرفيع',
   email: 'info@Amir.com',
-  phone: '+20 10 10127090',
+  phone: WHATSAPP_NUMBER,
   address:"مصر , دمياط",
   whatsapp: '+20 10 10127090',
 };
