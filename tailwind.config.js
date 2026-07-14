@@ -7,70 +7,102 @@ export default {
   theme: {
     extend: {
       colors: {
-        // ✅ Gold Metallic - ذهبي معدني
-        gold: {
-          50: '#fdf9ed',
-          100: '#faf0c9',
-          200: '#f4df8a',
-          300: '#edc742',
-          400: '#e5b320',
-          500: '#D4AF37', // Gold Metallic الأساسي
-          600: '#b8941f',
-          700: '#947418',
-          800: '#7a5e16',
-          900: '#684e18',
-          950: '#3d2b0a',
+        // ✅ أمير - الألوان الملكية الجديدة
+        // الخلفية البنية الداكنة (Wood Background)
+        amir: {
+          50: '#fdf8f6',
+          100: '#f2e8e5',
+          200: '#eaddd7',
+          300: '#e0cec7',
+          400: '#d2bab0',
+          500: '#a18072', // بني خشبي متوسط
+          600: '#8a6a5f', // بني داكن
+          700: '#6d4c41', // بني غامق جداً
+          800: '#4A3428', // بني داكن (الخلفية الرئيسية)
+          900: '#3D2817', // أغمق
+          950: '#2A1A0F', // الأسود البني
         },
-        // ✅ Silver - فضي
-        silver: {
-          50: '#fafafa',
-          100: '#f4f4f5',
-          200: '#e4e4e7',
-          300: '#d4d4d8',
-          400: '#C0C0C0', // Silver الأساسي
-          500: '#a1a1aa',
-          600: '#8a8a93',
-          700: '#71717a',
-          800: '#52525b',
-          900: '#3f3f46',
-          950: '#27272a',
-        },
-        // ✅ Royal Black - أسود ملكي
+        
+        // اللون العنابي الملكي (Burgundy Royal)
         royal: {
-          50: '#f5f5f5',
-          100: '#ebebeb',
-          200: '#d6d6d6',
-          300: '#b5b5b5',
-          400: '#8f8f8f',
-          500: '#6e6e6e',
-          600: '#545454',
-          700: '#434343',
-          800: '#2a2a2a',
-          900: '#1a1a1a',
-          950: '#0A0A0A', // Royal Black الأساسي
+          50: '#fef2f2',
+          100: '#fee2e2',
+          200: '#fecaca',
+          300: '#fca5a5',
+          400: '#f87171',
+          500: '#ef4444',
+          600: '#dc2626',
+          700: '#b91c1c',
+          800: '#991b1b',
+          900: '#7f1d1d',
+          950: '#450a0a', // عنابي غامق جداً (مثل الخلفية في الصورة)
         },
-        // ✅ Burgundy - عنابي ملكي
-        burgundy: {
-          50: '#fdf2f4',
-          100: '#fce7eb',
-          200: '#f9d0d9',
-          300: '#f4a9b9',
-          400: '#ec7690',
-          500: '#e0486d',
-          600: '#cc2654',
-          700: '#ab1942',
-          800: '#800020', // Burgundy الأساسي
-          900: '#6d0820',
-          950: '#3f010f',
+        
+        // الذهبي المعدني (Metallic Gold)
+        gold: {
+          50: '#fffbeb',
+          100: '#fef3c7',
+          200: '#fde68a',
+          300: '#fcd34d',
+          400: '#fbbf24',
+          500: '#f59e0b', // ذهبي برتقالي (مثل الأرقام في الصورة)
+          600: '#d97706',
+          700: '#b45309',
+          800: '#92400e',
+          900: '#78350f',
+          950: '#451a03',
         },
-        // ✅ Ivory - عاجي
-        ivory: '#FFFFF0',
-        // ✅ Champagne - شامبانيا
-        champagne: '#F7E7CE',
+        
+        // البرتقالي الذهبي (Golden Orange - للأرقام والنصوص المميزة)
+        amber: {
+          50: '#fff8f1',
+          100: '#ffeddb',
+          200: '#ffd9b3',
+          300: '#ffc080',
+          400: '#ffa34d',
+          500: '#FF6B35', // برتقالي ذهبي (مثل الأرقام)
+          600: '#F7931E',
+          700: '#d97706',
+          800: '#b45309',
+          900: '#92400e',
+          950: '#78350f',
+        },
+        
+        // الكريمي/العاجي (Ivory/Cream - للنصوص)
+        cream: {
+          50: '#fffffb',
+          100: '#fffff7',
+          200: '#ffffef',
+          300: '#ffffe6',
+          400: '#ffffda',
+          500: '#FFF8DC', // Cream أساسي
+          600: '#f5f0e1',
+          700: '#e6e0d4',
+          800: '#d6d0c7',
+          900: '#c6c0ba',
+          950: '#b6b0ad',
+        },
+        
+        // الأبيض الدافئ (Warm White)
+        ivory: {
+          DEFAULT: '#FFFFF0',
+          50: '#fffffb',
+          100: '#fffff7',
+          200: '#ffffef',
+        },
+        
+        // الشامبانيا (Champagne)
+        champagne: {
+          DEFAULT: '#F7E7CE',
+          50: '#fdf8f3',
+          100: '#f9ede0',
+          200: '#f7e7ce',
+        },
       },
       fontFamily: {
         display: ['Playfair Display', 'serif'],
         body: ['Tajawal', 'Inter', 'sans-serif'],
+        arabic: ['Tajawal', 'sans-serif'],
       },
       animation: {
         'fade-in': 'fadeIn 0.6s ease-out',
@@ -78,6 +110,7 @@ export default {
         'shimmer': 'shimmer 2s infinite linear',
         'float': 'float 6s ease-in-out infinite',
         'glow': 'glow 2s ease-in-out infinite alternate',
+        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       },
       keyframes: {
         fadeIn: {
@@ -97,15 +130,17 @@ export default {
           '50%': { transform: 'translateY(-10px)' },
         },
         glow: {
-          '0%': { boxShadow: '0 0 20px rgba(212, 175, 55, 0.3)' },
-          '100%': { boxShadow: '0 0 40px rgba(212, 175, 55, 0.6)' },
+          '0%': { boxShadow: '0 0 20px rgba(255, 107, 53, 0.3)' },
+          '100%': { boxShadow: '0 0 40px rgba(255, 107, 53, 0.6)' },
         },
       },
       boxShadow: {
-        'royal': '0 4px 20px rgba(10, 10, 10, 0.15)',
-        'gold': '0 4px 20px rgba(212, 175, 55, 0.25)',
-        'luxury': '0 10px 40px rgba(10, 10, 10, 0.2)',
-        'glow': '0 0 40px rgba(212, 175, 55, 0.4)',
+        'amir': '0 4px 20px rgba(74, 52, 40, 0.15)',
+        'royal': '0 4px 20px rgba(69, 10, 10, 0.2)',
+        'gold': '0 4px 20px rgba(245, 158, 11, 0.25)',
+        'amber': '0 4px 20px rgba(255, 107, 53, 0.3)',
+        'luxury': '0 10px 40px rgba(74, 52, 40, 0.25)',
+        'glow': '0 0 40px rgba(255, 107, 53, 0.4)',
       },
       borderRadius: {
         '4xl': '2rem',

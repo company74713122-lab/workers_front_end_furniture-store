@@ -16,9 +16,9 @@ export default function SEO({
   includeOrganization = true,
   includeLocalBusiness = true,
 }) {
-  const defaultTitle = title || 'BLAL - أثاث منزلي فاخر | معرض الأثاث الراقي في مصر';
-  const defaultDescription = description || 'اكتشف أفخم قطع الأثاث المنزلي في BLAL. غرف معيشة، نوم، سفرة، ومكاتب بأعلى جودة وأفضل الأسعار. توصيل مجاني وضمان 5 سنوات.';
-  const defaultKeywords = keywords || 'أثاث منزلي, أثاث فاخر, معرض أثاث, BLAL, غرف معيشة, غرف نوم, أثاث مصر, أثاث راقي';
+  const defaultTitle = title || 'Amir - أثاث منزلي فاخر | معرض الأثاث الراقي في مصر';
+  const defaultDescription = description || 'اكتشف أفخم قطع الأثاث المنزلي في Amir. غرف معيشة، نوم، سفرة، ومكاتب بأعلى جودة وأفضل الأسعار. توصيل مجاني وضمان 5 سنوات.';
+  const defaultKeywords = keywords || 'أثاث منزلي, أثاث فاخر, معرض أثاث, Amir, غرف معيشة, غرف نوم, أثاث مصر, أثاث راقي';
   const defaultUrl = canonicalUrl || 'https://furniture-store-5d3.pages.dev';
   const defaultImage = ogImage || 'https://furniture-store-5d3.pages.dev/og-image.jpg';
 

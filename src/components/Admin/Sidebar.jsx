@@ -65,7 +65,7 @@ export default function Sidebar() {
               <span className="text-white font-bold text-xl font-display">A</span>
             </div>
             <div>
-              <h2 className="font-bold text-gray-900 font-display">BLAL</h2>
+              <h2 className="font-bold text-gray-900 font-display">Amir</h2>
               <p className="text-xs text-gray-500">لوحة التحكم</p>
             </div>
           </div>

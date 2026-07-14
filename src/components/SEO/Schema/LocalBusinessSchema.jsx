@@ -4,7 +4,7 @@ export default function LocalBusinessSchema() {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'FurnitureStore',
-    name: 'BLAL Furniture Gallery',
+    name: 'Amir Furniture Gallery',
     // image: 'hhttps://furniture-store-5d3.pages.dev/store-image.jpg',
     '@id': 'https://furniture-store-5d3.pages.dev',
     url: 'https://furniture-store-5d3.pages.dev',
@@ -38,9 +38,9 @@ export default function LocalBusinessSchema() {
       },
     ],
     sameAs: [
-      'https://facebook.com/BLAL',
-      'https://instagram.com/BLAL',
-      'https://twitter.com/BLAL',
+      'https://facebook.com/Amir',
+      'https://instagram.com/Amir',
+      'https://twitter.com/Amir',
     ],
   };
 

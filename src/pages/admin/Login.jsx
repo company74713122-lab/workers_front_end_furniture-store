@@ -97,7 +97,7 @@ export default function Login() {
           <div className="w-16 h-16 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg">
             <span className="text-white font-bold text-2xl font-display">A</span>
           </div>
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">BLAL</h1>
+          <h1 className="text-2xl font-bold text-gray-900 mb-2">Amir</h1>
           <p className="text-gray-600 text-sm">تسجيل الدخول إلى لوحة التحكم</p>
         </div>
 
@@ -124,7 +124,7 @@ export default function Login() {
                 onChange={handleChange}
                 disabled={loading}
                 className="w-full pr-12 pl-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent text-gray-900 placeholder-gray-400 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
-                placeholder="admin@BLAL.com"
+                placeholder="admin@Amir.com"
                 required
               />
             </div>

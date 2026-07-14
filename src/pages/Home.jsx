@@ -149,9 +149,9 @@ export default function Home() {
   return (
     <>
     <SEO
-      title="BLAL - أثاث منزلي فاخر | معرض الأثاث الراقي في مصر"
-      description="اكتشف أفخم قطع الأثاث المنزلي في BLAL. غرف معيشة، نوم، سفرة، ومكاتب بأعلى جودة وأفضل الأسعار. توصيل مجاني وضمان 5 سنوات."
-      keywords="أثاث منزلي, أثاث فاخر, معرض أثاث, BLAL, غرف معيشة, غرف نوم"
+      title="Amir - أثاث منزلي فاخر | معرض الأثاث الراقي في مصر"
+      description="اكتشف أفخم قطع الأثاث المنزلي في Amir. غرف معيشة، نوم، سفرة، ومكاتب بأعلى جودة وأفضل الأسعار. ."
+      keywords="أثاث منزلي, أثاث فاخر, معرض أثاث, Amir, غرف معيشة, غرف نوم"
       canonicalUrl="https://furniture-store-5d3.pages.dev"
       ogImage="https://furniture-store-5d3.pages.dev/home-og.jpg"
     />
@@ -176,8 +176,9 @@ export default function Home() {
 
             {/* Title */}
             <h1 className="text-3xl sm:text-4xl md:text-6xl font-black mb-4 leading-tight">
-              <span className="block text-white">أثاث يليق</span>
-              <span className="block gradient-gold">بذوقك الرفيع</span>
+              <span className="block text-white">امير للاثاث الراقي  </span>
+              <br />
+              <span className="block gradient-gold"> اصل العمولة</span>
             </h1>
 
             {/* Description */}
@@ -202,7 +203,7 @@ export default function Home() {
               </Link>
             </div>
 
-            {/* Stats */}
+            
             <div className="flex gap-8 pt-8 mt-8 border-t border-white/10 justify-center">
               <div>
                 <div className="text-2xl md:text-3xl font-black text-gold-400">
@@ -234,10 +235,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 py-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
-              { icon: Truck, title: 'توصيل مجاني', desc: 'فوق 5000 جنيه' },
-              { icon: Shield, title: 'ضمان 5 سنوات', desc: 'على جميع المنتجات' },
-              { icon: Award, title: 'خامات فاخرة', desc: 'مستوردة ومضمونة' },
-              { icon: Phone, title: 'دعم 24/7', desc: 'فريق متخصص' },
+              { icon: Truck, title: 'توصيل ', desc: 'لكل المحافظات  ' },
+              { icon: Shield, title: ' جودة', desc: ' لكل المنتجات ' },
+              { icon: Award, title: 'خامات فاخرة', desc: ' ' },
+              { icon: Phone, title: 'دعم 24/7', desc: 'خبرة كبيرة ' },
             ].map((feature, idx) => (
               <div key={idx} className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-gold-100 rounded-xl flex items-center justify-center flex-shrink-0">

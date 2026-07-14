@@ -3,13 +3,13 @@ export const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER || '20101234
 
 // ✅ معلومات المتجر
 export const STORE_INFO = {
-  name: 'BLAL',
+  name: 'Amir',
   tagline: 'أثاث منزلي فاخر',
   description: 'معرض متخصص في الأثاث المنزلي الراقي - نقدم لك أفضل القطع المصنوعة بعناية لتناسب ذوقك الرفيع',
-  email: 'info@BLAL.com',
-  phone: '+20 101 234 5678',
+  email: 'info@Amir.com',
+  phone: '+20 10 10127090',
   address:"مصر , دمياط",
-  whatsapp: '201020353179',
+  whatsapp: '+20 10 10127090',
 };
 
 // ✅ الفئات - محدثة للأثاث المنزلي
@@ -70,9 +70,9 @@ export const STATUS = [
 
 // ✅ روابط التواصل الاجتماعي
 export const SOCIAL_LINKS = {
-  facebook: 'https://facebook.com/BLAL',
-  instagram: 'https://instagram.com/BLAL',
-  twitter: 'https://twitter.com/BLAL',
+  facebook: 'https://facebook.com/Amir',
+  instagram: 'https://instagram.com/Amir',
+  twitter: 'https://twitter.com/Amir',
   whatsapp: 'https://wa.me/201012345678',
 };
 

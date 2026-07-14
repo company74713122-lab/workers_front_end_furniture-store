@@ -1,5 +1,5 @@
-const CART_KEY = 'BLAL_cart';
-const WISHLIST_KEY = 'BLAL_wishlist';
+const CART_KEY = 'Amir_cart';
+const WISHLIST_KEY = 'Amir_wishlist';
 
 // Cart Functions
 export const getCart = () => {

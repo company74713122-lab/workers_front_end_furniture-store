@@ -105,9 +105,9 @@ export default function Products() {
   return (
     <>
     <SEO
-      title="جميع المنتجات | أثاث منزلي فاخر - BLAL"
+      title="جميع المنتجات | أثاث منزلي فاخر - Amir"
       description="تصفح مجموعتنا الكاملة من الأثاث المنزلي الفاخر. فلترة حسب الفئة، المادة، اللون، والسعر. توصيل مجاني وضمان 5 سنوات."
-      keywords="أثاث منزلي, شراء أثاث, أثاث أونلاين, معرض أثاث, BLAL"
+      keywords="أثاث منزلي, شراء أثاث, أثاث أونلاين, معرض أثاث, Amir"
       canonicalUrl="https://furniture-store-5d3.pages.dev/products"
       ogImage="https://furniture-store-5d3.pages.dev//products-og.jpg"
     />

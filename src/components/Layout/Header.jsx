@@ -48,14 +48,14 @@ export default function Header() {
           <div className="flex items-center gap-6">
             <span className="flex items-center gap-2">
               <span className="w-1.5 h-1.5 bg-gold-500 rounded-full animate-pulse" />
-              +20 101 234 5678
+              +20 10 10127090
             </span>
             <span className="text-gold-400/60">|</span>
-            <span>info@BLAL.com</span>
+            {/* <span>info@Amir.com</span> */}
           </div>
           <div className="flex items-center gap-2">
-            <span>✨</span>
-            <span>توصيل مجاني للطلبات فوق 5,000 جنيه</span>
+            {/* <span>✨</span> */}
+            <span> اصل العمولة </span>
           </div>
         </div>
       </div>
@@ -80,7 +80,7 @@ export default function Header() {
               </div>
               <div className="hidden sm:block">
                 <span className="text-2xl font-bold font-display text-royal-950 tracking-tight">
-                  BLAL
+                  Amir
                 </span>
                 <p className="text-[10px] text-gold-700 font-medium tracking-widest -mt-1">
                   ROYAL FURNITURE

@@ -10,7 +10,7 @@ export default function ProductSchema({ product }) {
     sku: product.sku,
     brand: {
       '@type': 'Brand',
-      name: 'BLAL',
+      name: 'Amir',
     },
     offers: {
       '@type': 'Offer',
