@@ -9,7 +9,7 @@ export const STORE_INFO = {
   email: 'info@Amir.com',
   phone: WHATSAPP_NUMBER,
   address:"مصر , دمياط",
-  whatsapp: '+20 10 10127090',
+  whatsapp: WHATSAPP_NUMBER,
 };
 
 // ✅ الفئات - محدثة للأثاث المنزلي
