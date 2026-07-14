@@ -443,7 +443,7 @@ export default function Home() {
             احصل على استشارة مجانية من خبرائنا
           </p>
           <a
-            href={`https://wa.me/201012345678?text=${encodeURIComponent('مرحباً، أريد الاستفسار عن منتجاتكم')}`}
+            href={`https://wa.me/201010127090?text=${encodeURIComponent('مرحباً، أريد الاستفسار عن منتجاتكم')}`}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-royal inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-8 py-3.5 rounded-full font-bold shadow-luxury transition-all text-sm md:text-base"

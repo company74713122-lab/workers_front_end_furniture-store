@@ -73,7 +73,7 @@ export const SOCIAL_LINKS = {
   facebook: 'https://facebook.com/Amir',
   instagram: 'https://instagram.com/Amir',
   twitter: 'https://twitter.com/Amir',
-  whatsapp: 'https://wa.me/201012345678',
+  whatsapp: 'https://wa.me/2010101270908',
 };
 
 // ✅ Helper functions
