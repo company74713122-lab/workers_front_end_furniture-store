@@ -5,7 +5,6 @@ import ProductCard from '../components/Product/ProductCard';
 import { getProducts } from '../services/product.service';
 import {
   CATEGORIES,
-  MATERIALS,
   COLORS,
   SIZES,
   getCategoryLabel,
@@ -18,6 +17,7 @@ import {
   ChevronRight,
   Search,
   Sparkles,
+  Check,
 } from 'lucide-react';
 
 import SEO from '../components/SEO/SEO';
@@ -40,14 +40,12 @@ export default function Products() {
 
   // ✅ مراجع لكل قسم
   const categoryRef = useRef(null);
-  const materialRef = useRef(null);
   const colorRef = useRef(null);
   const sizeRef = useRef(null);
   const priceRef = useRef(null);
   const productsRef = useRef(null);
 
   const category = searchParams.get('category') || '';
-  const material = searchParams.get('material') || '';
   const color = searchParams.get('color') || '';
   const size = searchParams.get('size') || '';
   const minPrice = searchParams.get('minPrice') || '';
@@ -56,18 +54,26 @@ export default function Products() {
   const search = searchParams.get('search') || '';
   const page = parseInt(searchParams.get('page') || '1');
 
+  // ✅ تنظيف معامل المادة من URL عند التحميل (إن وُجد)
+  useEffect(() => {
+    if (searchParams.get('material')) {
+      const newParams = new URLSearchParams(searchParams);
+      newParams.delete('material');
+      setSearchParams(newParams, { replace: true });
+    }
+  }, []);
+
   useEffect(() => {
     fetchProducts();
   }, [searchParams]);
 
-  // ✅ تحديد الخطوة الحالية عند تحميل الصفحة أو تغيير الفلاتر
+  // ✅ تحديث الخطوة الحالية (بدون المادة)
   useEffect(() => {
     if (!category) setCurrentStep('category');
-    else if (!material) setCurrentStep('material');
     else if (!color) setCurrentStep('color');
     else if (!size) setCurrentStep('size');
     else setCurrentStep('done');
-  }, [category, material, color, size]);
+  }, [category, color, size]);
 
   const fetchProducts = async () => {
     setLoading(true);
@@ -76,7 +82,6 @@ export default function Products() {
     try {
       const params = { page, limit: 12 };
       if (category) params.category = category;
-      if (material) params.material = material;
       if (color) params.color = color;
       if (size) params.size = size;
       if (minPrice) params.minPrice = minPrice;
@@ -104,20 +109,26 @@ export default function Products() {
     setTimeout(() => setToast({ show: false, message: '', icon: null }), 3000);
   };
 
+  // ✅ مسح فلتر السعر والعودة لـ "كل الأسعار"
+  const clearPriceFilter = () => {
+    const newParams = new URLSearchParams(searchParams);
+    newParams.delete('minPrice');
+    newParams.delete('maxPrice');
+    newParams.set('page', '1');
+    setSearchParams(newParams);
+    showToast('💰 عرض جميع الأسعار', Sparkles);
+  };
+
   // ✅ التوجيه الذكي إلى الخطوة التالية
   const guideToNextStep = (changedKey) => {
-    // تجاهل التوجيه عند تغيير الصفحة أو السعر (اختياري)
     if (changedKey === 'page') return;
 
     const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-    
-    // تحديد الخطوة التالية بناءً على ما تم اختياره
+
     let nextStep = { step: 'done', ref: productsRef, message: '🎉 رائع! شاهد المنتجات المتاحة', icon: Sparkles };
-    
+
     if (!category) {
       nextStep = { step: 'category', ref: categoryRef, message: '📂 اختر الفئة المناسبة أولاً', icon: Filter };
-    } else if (!material) {
-      nextStep = { step: 'material', ref: materialRef, message: '🪵 الآن اختر نوع المادة', icon: Sparkles };
     } else if (!color) {
       nextStep = { step: 'color', ref: colorRef, message: '🎨 اختر اللون المفضل لديك', icon: Sparkles };
     } else if (!size) {
@@ -126,17 +137,15 @@ export default function Products() {
 
     setCurrentStep(nextStep.step);
 
-    // التمرير على الهاتف فقط
     if (isMobile && nextStep.ref?.current) {
       setTimeout(() => {
         nextStep.ref.current?.scrollIntoView({
           behavior: 'smooth',
-          block: 'center', // في منتصف الشاشة
+          block: 'center',
         });
       }, 200);
     }
 
-    // إظهار الرسالة (فقط إذا كانت خطوة حقيقية وليست done مباشرة)
     if (changedKey !== 'page' && changedKey !== 'sort') {
       setTimeout(() => showToast(nextStep.message, nextStep.icon), 300);
     }
@@ -152,7 +161,6 @@ export default function Products() {
     if (key !== 'page') newParams.set('page', '1');
     setSearchParams(newParams);
 
-    // ✅ التوجيه بعد التغيير
     guideToNextStep(key);
   };
 
@@ -168,8 +176,12 @@ export default function Products() {
     setSearchParams(newParams);
   };
 
-  const hasActiveFilters = category || material || color || size || minPrice || maxPrice;
+  const hasActiveFilters = category || color || size || minPrice || maxPrice;
   const hasActiveSearch = search.length > 0;
+
+  // ✅ حساب نسبة التقدم (4 خطوات)
+  const progressPercent = !category ? '25%' : !color ? '50%' : !size ? '75%' : '100%';
+  const stepNumber = !category ? '1' : !color ? '2' : !size ? '3' : '4';
 
   // ✅ دالة لإضافة class الـ highlight للقسم النشط
   const getStepClass = (stepName) => {
@@ -182,11 +194,11 @@ export default function Products() {
   // ✅ شارة "الخطوة التالية"
   const StepBadge = ({ isActive, number }) => (
     isActive ? (
-      <span className="absolute -top-2 -right-2 w-6 h-6 bg-gold-500 text-royal-950 rounded-full text-xs font-bold flex items-center justify-center shadow-lg animate-bounce">
+      <span className="absolute -top-2 -right-2 w-6 h-6 bg-gold-500 text-royal-950 rounded-full text-xs font-bold flex items-center justify-center shadow-lg animate-bounce z-10">
         {number}
       </span>
     ) : (
-      <span className="absolute -top-2 -right-2 w-6 h-6 bg-royal-100 text-royal-400 rounded-full text-xs font-bold flex items-center justify-center">
+      <span className="absolute -top-2 -right-2 w-6 h-6 bg-royal-100 text-royal-400 rounded-full text-xs font-bold flex items-center justify-center z-10">
         {number}
       </span>
     )
@@ -196,13 +208,13 @@ export default function Products() {
     <>
       <SEO
         title="جميع المنتجات | أثاث منزلي فاخر - العباسي"
-        description="تصفح مجموعتنا الكاملة من الأثاث المنزلي الفاخر. فلترة حسب الفئة، المادة، اللون، والسعر."
+        description="تصفح مجموعتنا الكاملة من الأثاث المنزلي الفاخر. فلترة حسب الفئة، اللون، الحجم، والسعر."
         keywords="أثاث منزلي, شراء أثاث, أثاث أونلاين, معرض أثاث, العباسي"
         canonicalUrl="https://furniture-store-5d3.pages.dev/products"
         ogImage="https://furniture-store-5d3.pages.dev//products-og.jpg"
       />
 
-      {/* ✅ Toast التوجيهي - يظهر في الأعلى */}
+      {/* ✅ Toast التوجيهي */}
       {toast.show && (
         <div className="fixed top-4 left-1/2 -translate-x-1/2 z-[100] animate-slide-down">
           <div className="bg-gradient-to-r from-royal-950 to-burgundy-900 text-gold-100 px-6 py-3 rounded-2xl shadow-2xl flex items-center gap-3 border border-gold-500/30">
@@ -268,21 +280,15 @@ export default function Products() {
                 </div>
 
                 {/* ✅ مؤشر التقدم */}
-                <div className="mb-6 hidden md:block">
+                <div className="mb-6">
                   <div className="flex items-center justify-between mb-2 text-xs text-royal-600">
-                    <span>الخطوة {
-                      !category ? '1' : !material ? '2' : !color ? '3' : !size ? '4' : '5'
-                    } من 5</span>
-                    <span>{
-                      !category ? '20%' : !material ? '40%' : !color ? '60%' : !size ? '80%' : '100%'
-                    }</span>
+                    <span>الخطوة {stepNumber} من 4</span>
+                    <span>{progressPercent}</span>
                   </div>
                   <div className="h-1.5 bg-royal-100 rounded-full overflow-hidden">
-                    <div 
+                    <div
                       className="h-full bg-gradient-to-r from-gold-500 to-burgundy-600 rounded-full transition-all duration-500"
-                      style={{
-                        width: !category ? '20%' : !material ? '40%' : !color ? '60%' : !size ? '80%' : '100%'
-                      }}
+                      style={{ width: progressPercent }}
                     />
                   </div>
                 </div>
@@ -302,11 +308,25 @@ export default function Products() {
                   </select>
                 </div>
 
-                {/* ✅ الخطوة 1: الفئة */}
+                {/* ✅ الخطوة 1: الفئة - مع الكل */}
                 <div ref={categoryRef} className={`mb-6 relative scroll-mt-4 ${getStepClass('category')}`}>
                   <StepBadge isActive={currentStep === 'category'} number="1" />
                   <h4 className="font-semibold mb-3 text-royal-950 text-sm">الفئة</h4>
                   <ul className="grid grid-cols-2 md:grid-cols-1 gap-1">
+                    {/* ✅ زر الكل */}
+                    <li>
+                      <button
+                        onClick={() => updateFilter('category', '')}
+                        className={`w-full text-right px-3 py-2 rounded-lg transition text-sm flex items-center gap-2 ${
+                          !category
+                            ? 'bg-royal-950 text-gold-300'
+                            : 'hover:bg-royal-50 text-royal-800'
+                        }`}
+                      >
+                        <span>✨</span>
+                        <span>الكل</span>
+                      </button>
+                    </li>
                     {CATEGORIES.map((cat) => (
                       <li key={cat.value}>
                         <button
@@ -327,35 +347,30 @@ export default function Products() {
                   </ul>
                 </div>
 
-                {/* ✅ الخطوة 2: المادة */}
-                <div ref={materialRef} className={`mb-6 relative scroll-mt-4 ${getStepClass('material')}`}>
-                  <StepBadge isActive={currentStep === 'material'} number="2" />
-                  <h4 className="font-semibold mb-3 text-royal-950 text-sm">المادة</h4>
-                  <ul className="flex flex-wrap md:block gap-1 md:space-y-1">
-                    {MATERIALS.map((mat) => (
-                      <li key={mat.value}>
-                        <button
-                          onClick={() =>
-                            updateFilter('material', material === mat.value ? '' : mat.value)
-                          }
-                          className={`w-full text-right px-3 py-2 rounded-lg transition text-sm ${
-                            material === mat.value
-                              ? 'bg-royal-950 text-gold-300'
-                              : 'hover:bg-royal-50 text-royal-800'
-                          }`}
-                        >
-                          {mat.label}
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* ✅ الخطوة 3: اللون */}
+                {/* ✅ الخطوة 2: اللون - مع الكل */}
                 <div ref={colorRef} className={`mb-6 relative scroll-mt-4 ${getStepClass('color')}`}>
-                  <StepBadge isActive={currentStep === 'color'} number="3" />
+                  <StepBadge isActive={currentStep === 'color'} number="2" />
                   <h4 className="font-semibold mb-3 text-royal-950 text-sm">اللون</h4>
                   <div className="flex flex-wrap gap-2">
+                    {/* ✅ زر الكل */}
+                    <button
+                      onClick={() => updateFilter('color', '')}
+                      className={`w-8 h-8 rounded-full border-2 transition-all flex items-center justify-center ${
+                        !color
+                          ? 'border-gold-500 ring-2 ring-gold-300 scale-110'
+                          : 'border-neutral-200 hover:border-gold-400'
+                      }`}
+                      style={{
+                        background: 'conic-gradient(#ef4444, #f97316, #eab308, #22c55e, #06b6d4, #3b82f6, #8b5cf6, #ef4444)'
+                      }}
+                      title="كل الألوان"
+                    >
+                      {!color && (
+                        <span className="w-4 h-4 bg-white rounded-full flex items-center justify-center shadow-sm">
+                          <Check className="w-3 h-3 text-gold-600" />
+                        </span>
+                      )}
+                    </button>
                     {COLORS.map((col) => (
                       <button
                         key={col.value}
@@ -374,11 +389,23 @@ export default function Products() {
                   </div>
                 </div>
 
-                {/* ✅ الخطوة 4: الحجم */}
+                {/* ✅ الخطوة 3: الحجم - مع الكل */}
                 <div ref={sizeRef} className={`mb-6 relative scroll-mt-4 ${getStepClass('size')}`}>
-                  <StepBadge isActive={currentStep === 'size'} number="4" />
+                  <StepBadge isActive={currentStep === 'size'} number="3" />
                   <h4 className="font-semibold mb-3 text-royal-950 text-sm">الحجم</h4>
                   <div className="flex flex-wrap gap-2">
+                    {/* ✅ زر الكل */}
+                    <button
+                      onClick={() => updateFilter('size', '')}
+                      className={`px-3 py-1.5 rounded-lg text-xs font-medium transition flex items-center gap-1 ${
+                        !size
+                          ? 'bg-royal-950 text-gold-300'
+                          : 'bg-royal-50 text-royal-800 hover:bg-royal-100'
+                      }`}
+                    >
+                      <span>✨</span>
+                      الكل
+                    </button>
                     {SIZES.map((s) => (
                       <button
                         key={s.value}
@@ -397,24 +424,54 @@ export default function Products() {
                   </div>
                 </div>
 
-                {/* الخطوة 5: السعر */}
+                {/* ✅ الخطوة 4: السعر - مع الكل */}
                 <div ref={priceRef} className="relative">
-                  <StepBadge isActive={false} number="5" />
-                  <h4 className="font-semibold mb-3 text-royal-950 text-sm">نطاق السعر</h4>
+                  <StepBadge isActive={false} number="4" />
+                  <h4 className="font-semibold mb-3 text-royal-950 text-sm">نطاق السعر (اختياري)</h4>
+
+                  {/* ✅ زر كل الأسعار */}
+                  <button
+                    onClick={clearPriceFilter}
+                    className={`w-full mb-3 px-4 py-2.5 rounded-lg text-sm font-medium transition flex items-center justify-center gap-2 ${
+                      !minPrice && !maxPrice
+                        ? 'bg-royal-950 text-gold-300 shadow-sm'
+                        : 'bg-royal-50 text-royal-800 hover:bg-royal-100'
+                    }`}
+                  >
+                    <span>💰</span>
+                    كل الأسعار
+                  </button>
+
+                  {/* فاصل "أو" */}
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="flex-1 h-px bg-royal-100"></div>
+                    <span className="text-xs text-royal-400">أو حدد نطاق</span>
+                    <div className="flex-1 h-px bg-royal-100"></div>
+                  </div>
+
+                  {/* حقول النطاق المخصص */}
                   <div className="flex gap-2">
                     <input
                       type="number"
                       placeholder="من"
                       value={minPrice}
                       onChange={(e) => updateFilter('minPrice', e.target.value)}
-                      className="flex-1 px-3 py-2 bg-royal-50 border border-royal-200 rounded-lg text-sm"
+                      className={`flex-1 px-3 py-2 border rounded-lg text-sm transition ${
+                        minPrice
+                          ? 'bg-gold-50 border-gold-300'
+                          : 'bg-royal-50 border-royal-200'
+                      }`}
                     />
                     <input
                       type="number"
                       placeholder="إلى"
                       value={maxPrice}
                       onChange={(e) => updateFilter('maxPrice', e.target.value)}
-                      className="flex-1 px-3 py-2 bg-royal-50 border border-royal-200 rounded-lg text-sm"
+                      className={`flex-1 px-3 py-2 border rounded-lg text-sm transition ${
+                        maxPrice
+                          ? 'bg-gold-50 border-gold-300'
+                          : 'bg-royal-50 border-royal-200'
+                      }`}
                     />
                   </div>
                 </div>
@@ -453,8 +510,8 @@ export default function Products() {
                     <Search className="w-10 h-10 text-neutral-400" />
                   </div>
                   <p className="text-royal-600 text-lg mb-4">
-                    {hasActiveSearch 
-                      ? `لا توجد نتائج للبحث عن "${search}"` 
+                    {hasActiveSearch
+                      ? `لا توجد نتائج للبحث عن "${search}"`
                       : 'لا توجد منتجات مطابقة'}
                   </p>
                   <p className="text-royal-500 text-sm mb-6">
