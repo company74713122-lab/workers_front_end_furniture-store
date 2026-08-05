@@ -16,7 +16,6 @@ import {
   ChevronLeft,
   ChevronRight,
   Search,
-  Sparkles,
   Check,
   ArrowDown,
 } from 'lucide-react';
@@ -100,8 +99,7 @@ export default function Products() {
     }
   };
 
-  // ✅ إصلاح: icon يجب أن يكون React Component وليس نص
-  const showToast = (message, icon = Sparkles) => {
+  const showToast = (message, icon = Filter) => {
     setToast({ show: true, message, icon });
     setTimeout(() => setToast({ show: false, message: '', icon: null }), 3000);
   };
@@ -112,7 +110,7 @@ export default function Products() {
     newParams.delete('maxPrice');
     newParams.set('page', '1');
     setSearchParams(newParams);
-    showToast('💰 عرض جميع الأسعار', Sparkles);
+    showToast('💰 عرض جميع الأسعار', Filter);
   };
 
   const skipToProducts = () => {
@@ -121,7 +119,7 @@ export default function Products() {
         behavior: 'smooth',
         block: 'start',
       });
-      showToast('👇 تخطي الفلاتر - استمتع بالتسوق!', Sparkles);
+      showToast('👇 تخطي الفلاتر - استمتع بالتسوق!', ArrowDown);
     }
   };
 
@@ -130,15 +128,14 @@ export default function Products() {
 
     const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
-    // ✅ إصلاح: استبدال '⭐' بـ Sparkles
-    let nextStep = { step: 'done', ref: productsRef, message: '🎉 رائع! شاهد المنتجات المتاحة', icon: Sparkles };
+    let nextStep = { step: 'done', ref: productsRef, message: '🎉 رائع! شاهد المنتجات المتاحة', icon: Filter };
 
     if (!category) {
       nextStep = { step: 'category', ref: categoryRef, message: '📂 اختر الفئة المناسبة أولاً', icon: Filter };
     } else if (!color) {
-      nextStep = { step: 'color', ref: colorRef, message: '🎨 اختر اللون المفضل لديك', icon: Sparkles };
+      nextStep = { step: 'color', ref: colorRef, message: '🎨 اختر اللون المفضل لديك', icon: Filter };
     } else if (!size) {
-      nextStep = { step: 'size', ref: sizeRef, message: '📏 حدد الحجم المناسب', icon: Sparkles };
+      nextStep = { step: 'size', ref: sizeRef, message: '📏 حدد الحجم المناسب', icon: Filter };
     }
 
     setCurrentStep(nextStep.step);
@@ -334,8 +331,7 @@ export default function Products() {
                             : 'hover:bg-royal-50 text-royal-800'
                         }`}
                       >
-                        {/* ✅ إصلاح: إضافة أيقونة بدلاً من span فارغة */}
-                        <Sparkles className="w-4 h-4" />
+                        <Check className="w-4 h-4" />
                         <span>الكل</span>
                       </button>
                     </li>
@@ -413,8 +409,7 @@ export default function Products() {
                           : 'bg-royal-50 text-royal-800 hover:bg-royal-100'
                       }`}
                     >
-                      {/* ✅ إصلاح: إضافة أيقونة بدلاً من span فارغة */}
-                      <Sparkles className="w-3 h-3" />
+                      <Check className="w-3 h-3" />
                       الكل
                     </button>
                     {SIZES.map((s) => (
