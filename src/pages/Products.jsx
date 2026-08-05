@@ -100,7 +100,8 @@ export default function Products() {
     }
   };
 
-  const showToast = (message, icon = "⭐") => {
+  // ✅ إصلاح: icon يجب أن يكون React Component وليس نص
+  const showToast = (message, icon = Sparkles) => {
     setToast({ show: true, message, icon });
     setTimeout(() => setToast({ show: false, message: '', icon: null }), 3000);
   };
@@ -111,17 +112,16 @@ export default function Products() {
     newParams.delete('maxPrice');
     newParams.set('page', '1');
     setSearchParams(newParams);
-    showToast(' عرض جميع الأسعار', '⭐');
+    showToast('💰 عرض جميع الأسعار', Sparkles);
   };
 
-  // ✅ تخطي الفلاتر والانتقال مباشرة للمنتجات
   const skipToProducts = () => {
     if (productsRef.current) {
       productsRef.current.scrollIntoView({
         behavior: 'smooth',
         block: 'start',
       });
-      showToast('👇 تخطي الفلاتر - استمتع بالتسوق!', '⭐');
+      showToast('👇 تخطي الفلاتر - استمتع بالتسوق!', Sparkles);
     }
   };
 
@@ -130,14 +130,15 @@ export default function Products() {
 
     const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
-    let nextStep = { step: 'done', ref: productsRef, message: '🎉 رائع! شاهد المنتجات المتاحة', icon: '⭐' };
+    // ✅ إصلاح: استبدال '⭐' بـ Sparkles
+    let nextStep = { step: 'done', ref: productsRef, message: '🎉 رائع! شاهد المنتجات المتاحة', icon: Sparkles };
 
     if (!category) {
       nextStep = { step: 'category', ref: categoryRef, message: '📂 اختر الفئة المناسبة أولاً', icon: Filter };
     } else if (!color) {
-      nextStep = { step: 'color', ref: colorRef, message: '🎨 اختر اللون المفضل لديك', icon: '⭐' };
+      nextStep = { step: 'color', ref: colorRef, message: '🎨 اختر اللون المفضل لديك', icon: Sparkles };
     } else if (!size) {
-      nextStep = { step: 'size', ref: sizeRef, message: '📏 حدد الحجم المناسب', icon: '⭐' };
+      nextStep = { step: 'size', ref: sizeRef, message: '📏 حدد الحجم المناسب', icon: Sparkles };
     }
 
     setCurrentStep(nextStep.step);
@@ -265,7 +266,6 @@ export default function Products() {
             {/* الفلاتر */}
             <aside className="w-full md:w-72 flex-shrink-0">
               <div className="bg-white p-4 md:p-6 rounded-2xl shadow-sm md:sticky md:top-28 border border-gold-100">
-                {/* ✅ القسم المعدل: عنوان + زر تخطي */}
                 <div className="flex justify-between items-start mb-6 gap-3">
                   <div className="flex-1">
                     <h3 className="font-bold text-lg text-royal-950 flex items-center gap-2 mb-1">
@@ -275,7 +275,6 @@ export default function Products() {
                     <p className="text-xs text-royal-500 hidden md:block">
                       اختر تفضيلاتك للعثور على المنتج المثالي
                     </p>
-                    {/* ✅ زر التخطي - يظهر فقط على الهاتف */}
                     <button
                       onClick={skipToProducts}
                       className="mt-3 md:hidden w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-gold-500 to-gold-600 text-royal-950 rounded-xl text-sm font-bold shadow-md hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all"
@@ -294,7 +293,6 @@ export default function Products() {
                   )}
                 </div>
 
-                {/* مؤشر التقدم */}
                 <div className="mb-6">
                   <div className="flex items-center justify-between mb-2 text-xs text-royal-600">
                     <span>الخطوة {stepNumber} من 4</span>
@@ -308,7 +306,6 @@ export default function Products() {
                   </div>
                 </div>
 
-                {/* ترتيب */}
                 <div className="mb-6 pb-6 border-b border-gold-100">
                   <h4 className="font-semibold mb-3 text-royal-950 text-sm">الترتيب</h4>
                   <select
@@ -337,7 +334,8 @@ export default function Products() {
                             : 'hover:bg-royal-50 text-royal-800'
                         }`}
                       >
-                        <span></span>
+                        {/* ✅ إصلاح: إضافة أيقونة بدلاً من span فارغة */}
+                        <Sparkles className="w-4 h-4" />
                         <span>الكل</span>
                       </button>
                     </li>
@@ -415,7 +413,8 @@ export default function Products() {
                           : 'bg-royal-50 text-royal-800 hover:bg-royal-100'
                       }`}
                     >
-                      <span></span>
+                      {/* ✅ إصلاح: إضافة أيقونة بدلاً من span فارغة */}
+                      <Sparkles className="w-3 h-3" />
                       الكل
                     </button>
                     {SIZES.map((s) => (
