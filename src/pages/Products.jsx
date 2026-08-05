@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react'; // ✅ إضافة useRef
 import { useSearchParams } from 'react-router-dom';
 import Container from '../components/UI/Container';
 import ProductCard from '../components/Product/ProductCard';
@@ -32,6 +32,9 @@ export default function Products() {
     totalPages: 1,
     totalCount: 0,
   });
+
+  // ✅ مرجع لقسم المنتجات للتمرير إليه
+  const productsRef = useRef(null);
 
   const category = searchParams.get('category') || '';
   const material = searchParams.get('material') || '';
@@ -76,6 +79,18 @@ export default function Products() {
     }
   };
 
+  // ✅ دالة مساعدة للتمرير السلس إلى قسم المنتجات على الهاتف
+  const scrollToProducts = () => {
+    if (typeof window !== 'undefined' && window.innerWidth < 768 && productsRef.current) {
+      setTimeout(() => {
+        productsRef.current?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      }, 150); // تأخير بسيط للسماح بتحديث الـ DOM
+    }
+  };
+
   const updateFilter = (key, value) => {
     const newParams = new URLSearchParams(searchParams);
     if (value) {
@@ -85,16 +100,23 @@ export default function Products() {
     }
     if (key !== 'page') newParams.set('page', '1');
     setSearchParams(newParams);
+
+    // ✅ التمرير إلى المنتجات عند تغيير الفلتر (وليس عند تغيير الصفحة)
+    if (key !== 'page') {
+      scrollToProducts();
+    }
   };
 
   const clearFilters = () => {
     setSearchParams({});
+    scrollToProducts(); // ✅
   };
 
   const clearSearch = () => {
     const newParams = new URLSearchParams(searchParams);
     newParams.delete('search');
     setSearchParams(newParams);
+    scrollToProducts(); // ✅
   };
 
   const hasActiveFilters = category || material || color || size || minPrice || maxPrice;
@@ -146,7 +168,7 @@ export default function Products() {
 
         <Container className="py-6">
           <div className="flex flex-col md:flex-row gap-6">
-            {/* ✅ الفلاتر: ظاهرة دائماً على الهاتف والكمبيوتر */}
+            {/* الفلاتر */}
             <aside className="w-full md:w-72 flex-shrink-0">
               <div className="bg-white p-4 md:p-6 rounded-2xl shadow-sm md:sticky md:top-28 border border-gold-100">
                 <div className="flex justify-between items-center mb-6">
@@ -164,7 +186,7 @@ export default function Products() {
                   )}
                 </div>
 
-                {/* ✅ ترتيب - مدمج داخل الفلاتر */}
+                {/* ترتيب */}
                 <div className="mb-6 pb-6 border-b border-gold-100">
                   <h4 className="font-semibold mb-3 text-royal-950 text-sm">الترتيب</h4>
                   <select
@@ -182,8 +204,7 @@ export default function Products() {
                 {/* Category */}
                 <div className="mb-6">
                   <h4 className="font-semibold mb-3 text-royal-950 text-sm">الفئة</h4>
-                  {/* ✅ عرض شبكي على الهاتف لاستغلال المساحة */}
-                  <ul className="grid grid-cols-2 md:grid-cols-1 gap-1 md:space-y-1">
+                  <ul className="grid grid-cols-2 md:grid-cols-1 gap-1">
                     {CATEGORIES.map((cat) => (
                       <li key={cat.value}>
                         <button
@@ -294,9 +315,9 @@ export default function Products() {
               </div>
             </aside>
 
-            {/* Products */}
-            <main className="flex-1">
-              {/* Sort Bar - Desktop only (للحفاظ على نفس التصميم السابق إذا أردت) */}
+            {/* ✅ Products - إضافة ref هنا */}
+            <main ref={productsRef} className="flex-1">
+              {/* Sort Bar - Desktop */}
               <div className="hidden md:flex justify-between items-center mb-6 bg-white p-4 rounded-xl shadow-sm border border-gold-100">
                 <span className="text-sm text-royal-600">
                   {pagination.totalCount} منتج
@@ -415,7 +436,6 @@ export default function Products() {
             </main>
           </div>
         </Container>
-        {/* ✅ تم حذف قسم Mobile Filters Modal لأنه لم يعد ضرورياً */}
       </div>
     </>
   );
