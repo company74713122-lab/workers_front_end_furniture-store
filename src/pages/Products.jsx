@@ -111,7 +111,7 @@ export default function Products() {
     newParams.delete('maxPrice');
     newParams.set('page', '1');
     setSearchParams(newParams);
-    showToast('💰 عرض جميع الأسعار', Sparkles);
+    showToast(' عرض جميع الأسعار', Sparkles);
   };
 
   // ✅ تخطي الفلاتر والانتقال مباشرة للمنتجات
