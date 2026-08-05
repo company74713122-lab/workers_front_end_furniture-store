@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'; // ✅ إضافة useRef
+import { useState, useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import Container from '../components/UI/Container';
 import ProductCard from '../components/Product/ProductCard';
@@ -17,6 +17,7 @@ import {
   ChevronLeft,
   ChevronRight,
   Search,
+  Sparkles,
 } from 'lucide-react';
 
 import SEO from '../components/SEO/SEO';
@@ -33,7 +34,16 @@ export default function Products() {
     totalCount: 0,
   });
 
-  // ✅ مرجع لقسم المنتجات للتمرير إليه
+  // ✅ حالات نظام التوجيه
+  const [currentStep, setCurrentStep] = useState('category');
+  const [toast, setToast] = useState({ show: false, message: '', icon: null });
+
+  // ✅ مراجع لكل قسم
+  const categoryRef = useRef(null);
+  const materialRef = useRef(null);
+  const colorRef = useRef(null);
+  const sizeRef = useRef(null);
+  const priceRef = useRef(null);
   const productsRef = useRef(null);
 
   const category = searchParams.get('category') || '';
@@ -49,6 +59,15 @@ export default function Products() {
   useEffect(() => {
     fetchProducts();
   }, [searchParams]);
+
+  // ✅ تحديد الخطوة الحالية عند تحميل الصفحة أو تغيير الفلاتر
+  useEffect(() => {
+    if (!category) setCurrentStep('category');
+    else if (!material) setCurrentStep('material');
+    else if (!color) setCurrentStep('color');
+    else if (!size) setCurrentStep('size');
+    else setCurrentStep('done');
+  }, [category, material, color, size]);
 
   const fetchProducts = async () => {
     setLoading(true);
@@ -79,15 +98,47 @@ export default function Products() {
     }
   };
 
-  // ✅ دالة مساعدة للتمرير السلس إلى قسم المنتجات على الهاتف
-  const scrollToProducts = () => {
-    if (typeof window !== 'undefined' && window.innerWidth < 768 && productsRef.current) {
+  // ✅ إظهار الرسالة التوضيحية
+  const showToast = (message, icon = Sparkles) => {
+    setToast({ show: true, message, icon });
+    setTimeout(() => setToast({ show: false, message: '', icon: null }), 3000);
+  };
+
+  // ✅ التوجيه الذكي إلى الخطوة التالية
+  const guideToNextStep = (changedKey) => {
+    // تجاهل التوجيه عند تغيير الصفحة أو السعر (اختياري)
+    if (changedKey === 'page') return;
+
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    
+    // تحديد الخطوة التالية بناءً على ما تم اختياره
+    let nextStep = { step: 'done', ref: productsRef, message: '🎉 رائع! شاهد المنتجات المتاحة', icon: Sparkles };
+    
+    if (!category) {
+      nextStep = { step: 'category', ref: categoryRef, message: '📂 اختر الفئة المناسبة أولاً', icon: Filter };
+    } else if (!material) {
+      nextStep = { step: 'material', ref: materialRef, message: '🪵 الآن اختر نوع المادة', icon: Sparkles };
+    } else if (!color) {
+      nextStep = { step: 'color', ref: colorRef, message: '🎨 اختر اللون المفضل لديك', icon: Sparkles };
+    } else if (!size) {
+      nextStep = { step: 'size', ref: sizeRef, message: '📏 حدد الحجم المناسب', icon: Sparkles };
+    }
+
+    setCurrentStep(nextStep.step);
+
+    // التمرير على الهاتف فقط
+    if (isMobile && nextStep.ref?.current) {
       setTimeout(() => {
-        productsRef.current?.scrollIntoView({
+        nextStep.ref.current?.scrollIntoView({
           behavior: 'smooth',
-          block: 'start',
+          block: 'center', // في منتصف الشاشة
         });
-      }, 150); // تأخير بسيط للسماح بتحديث الـ DOM
+      }, 200);
+    }
+
+    // إظهار الرسالة (فقط إذا كانت خطوة حقيقية وليست done مباشرة)
+    if (changedKey !== 'page' && changedKey !== 'sort') {
+      setTimeout(() => showToast(nextStep.message, nextStep.icon), 300);
     }
   };
 
@@ -101,26 +152,45 @@ export default function Products() {
     if (key !== 'page') newParams.set('page', '1');
     setSearchParams(newParams);
 
-    // ✅ التمرير إلى المنتجات عند تغيير الفلتر (وليس عند تغيير الصفحة)
-    if (key !== 'page') {
-      scrollToProducts();
-    }
+    // ✅ التوجيه بعد التغيير
+    guideToNextStep(key);
   };
 
   const clearFilters = () => {
     setSearchParams({});
-    scrollToProducts(); // ✅
+    setCurrentStep('category');
+    showToast('🔄 تم مسح جميع الفلاتر', X);
   };
 
   const clearSearch = () => {
     const newParams = new URLSearchParams(searchParams);
     newParams.delete('search');
     setSearchParams(newParams);
-    scrollToProducts(); // ✅
   };
 
   const hasActiveFilters = category || material || color || size || minPrice || maxPrice;
   const hasActiveSearch = search.length > 0;
+
+  // ✅ دالة لإضافة class الـ highlight للقسم النشط
+  const getStepClass = (stepName) => {
+    if (currentStep === stepName) {
+      return 'ring-2 ring-gold-400 bg-gradient-to-br from-gold-50/50 to-royal-50/50 rounded-xl p-3 -m-3 transition-all duration-500 shadow-sm';
+    }
+    return 'transition-all duration-500';
+  };
+
+  // ✅ شارة "الخطوة التالية"
+  const StepBadge = ({ isActive, number }) => (
+    isActive ? (
+      <span className="absolute -top-2 -right-2 w-6 h-6 bg-gold-500 text-royal-950 rounded-full text-xs font-bold flex items-center justify-center shadow-lg animate-bounce">
+        {number}
+      </span>
+    ) : (
+      <span className="absolute -top-2 -right-2 w-6 h-6 bg-royal-100 text-royal-400 rounded-full text-xs font-bold flex items-center justify-center">
+        {number}
+      </span>
+    )
+  );
 
   return (
     <>
@@ -131,6 +201,17 @@ export default function Products() {
         canonicalUrl="https://furniture-store-5d3.pages.dev/products"
         ogImage="https://furniture-store-5d3.pages.dev//products-og.jpg"
       />
+
+      {/* ✅ Toast التوجيهي - يظهر في الأعلى */}
+      {toast.show && (
+        <div className="fixed top-4 left-1/2 -translate-x-1/2 z-[100] animate-slide-down">
+          <div className="bg-gradient-to-r from-royal-950 to-burgundy-900 text-gold-100 px-6 py-3 rounded-2xl shadow-2xl flex items-center gap-3 border border-gold-500/30">
+            {toast.icon && <toast.icon className="w-5 h-5 text-gold-400" />}
+            <span className="text-sm font-medium">{toast.message}</span>
+          </div>
+        </div>
+      )}
+
       <div className="bg-neutral-50 min-h-screen">
         {/* Header */}
         <div className="bg-gradient-to-r from-royal-50 via-gold-50 to-burgundy-50 py-8 md:py-12 border-b border-gold-100">
@@ -186,6 +267,26 @@ export default function Products() {
                   )}
                 </div>
 
+                {/* ✅ مؤشر التقدم */}
+                <div className="mb-6 hidden md:block">
+                  <div className="flex items-center justify-between mb-2 text-xs text-royal-600">
+                    <span>الخطوة {
+                      !category ? '1' : !material ? '2' : !color ? '3' : !size ? '4' : '5'
+                    } من 5</span>
+                    <span>{
+                      !category ? '20%' : !material ? '40%' : !color ? '60%' : !size ? '80%' : '100%'
+                    }</span>
+                  </div>
+                  <div className="h-1.5 bg-royal-100 rounded-full overflow-hidden">
+                    <div 
+                      className="h-full bg-gradient-to-r from-gold-500 to-burgundy-600 rounded-full transition-all duration-500"
+                      style={{
+                        width: !category ? '20%' : !material ? '40%' : !color ? '60%' : !size ? '80%' : '100%'
+                      }}
+                    />
+                  </div>
+                </div>
+
                 {/* ترتيب */}
                 <div className="mb-6 pb-6 border-b border-gold-100">
                   <h4 className="font-semibold mb-3 text-royal-950 text-sm">الترتيب</h4>
@@ -201,8 +302,9 @@ export default function Products() {
                   </select>
                 </div>
 
-                {/* Category */}
-                <div className="mb-6">
+                {/* ✅ الخطوة 1: الفئة */}
+                <div ref={categoryRef} className={`mb-6 relative scroll-mt-4 ${getStepClass('category')}`}>
+                  <StepBadge isActive={currentStep === 'category'} number="1" />
                   <h4 className="font-semibold mb-3 text-royal-950 text-sm">الفئة</h4>
                   <ul className="grid grid-cols-2 md:grid-cols-1 gap-1">
                     {CATEGORIES.map((cat) => (
@@ -225,8 +327,9 @@ export default function Products() {
                   </ul>
                 </div>
 
-                {/* Material */}
-                <div className="mb-6">
+                {/* ✅ الخطوة 2: المادة */}
+                <div ref={materialRef} className={`mb-6 relative scroll-mt-4 ${getStepClass('material')}`}>
+                  <StepBadge isActive={currentStep === 'material'} number="2" />
                   <h4 className="font-semibold mb-3 text-royal-950 text-sm">المادة</h4>
                   <ul className="flex flex-wrap md:block gap-1 md:space-y-1">
                     {MATERIALS.map((mat) => (
@@ -248,8 +351,9 @@ export default function Products() {
                   </ul>
                 </div>
 
-                {/* Color */}
-                <div className="mb-6">
+                {/* ✅ الخطوة 3: اللون */}
+                <div ref={colorRef} className={`mb-6 relative scroll-mt-4 ${getStepClass('color')}`}>
+                  <StepBadge isActive={currentStep === 'color'} number="3" />
                   <h4 className="font-semibold mb-3 text-royal-950 text-sm">اللون</h4>
                   <div className="flex flex-wrap gap-2">
                     {COLORS.map((col) => (
@@ -270,8 +374,9 @@ export default function Products() {
                   </div>
                 </div>
 
-                {/* Size */}
-                <div className="mb-6">
+                {/* ✅ الخطوة 4: الحجم */}
+                <div ref={sizeRef} className={`mb-6 relative scroll-mt-4 ${getStepClass('size')}`}>
+                  <StepBadge isActive={currentStep === 'size'} number="4" />
                   <h4 className="font-semibold mb-3 text-royal-950 text-sm">الحجم</h4>
                   <div className="flex flex-wrap gap-2">
                     {SIZES.map((s) => (
@@ -292,8 +397,9 @@ export default function Products() {
                   </div>
                 </div>
 
-                {/* Price */}
-                <div>
+                {/* الخطوة 5: السعر */}
+                <div ref={priceRef} className="relative">
+                  <StepBadge isActive={false} number="5" />
                   <h4 className="font-semibold mb-3 text-royal-950 text-sm">نطاق السعر</h4>
                   <div className="flex gap-2">
                     <input
@@ -315,16 +421,14 @@ export default function Products() {
               </div>
             </aside>
 
-            {/* ✅ Products - إضافة ref هنا */}
-            <main ref={productsRef} className="flex-1">
-              {/* Sort Bar - Desktop */}
+            {/* المنتجات */}
+            <main ref={productsRef} className="flex-1 scroll-mt-4">
               <div className="hidden md:flex justify-between items-center mb-6 bg-white p-4 rounded-xl shadow-sm border border-gold-100">
                 <span className="text-sm text-royal-600">
                   {pagination.totalCount} منتج
                 </span>
               </div>
 
-              {/* Content */}
               {loading ? (
                 <div className="py-20 text-center">
                   <div className="w-12 h-12 border-4 border-gold-200 border-t-gold-600 rounded-full animate-spin mx-auto mb-4" />
