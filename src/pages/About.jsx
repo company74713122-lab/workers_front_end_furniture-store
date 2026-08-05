@@ -56,9 +56,9 @@ export default function About() {
   return (
     <>
       <SEO
-        title="من نحن | أمير للأثاث الراقي - قصة التميز"
-        description="تعرف على قصة أمير، أكثر من 10 سنوات خبرة في عالم الأثاث المنزلي الفاخر في مصر. نقدم لك أفضل القطع المصنوعة بعناية."
-        keywords="من نحن, أمير, قصة المعرض, أثاث مصر, معرض أثاث فاخر"
+        title="من نحن | العباسي للأثاث الراقي - قصة التميز"
+        description="تعرف على قصة العباسي، أكثر من 10 سنوات خبرة في عالم الأثاث المنزلي الفاخر في مصر. نقدم لك أفضل القطع المصنوعة بعناية."
+        keywords="من نحن, العابسي, قصة المعرض, أثاث مصر, معرض أثاث فاخر"
         canonicalUrl="https://furniture-store-5d3.pages.dev/about"
       />
       
@@ -77,7 +77,7 @@ export default function About() {
       </div>
 
       <h1 className="text-4xl md:text-6xl font-bold font-display mb-6 leading-tight text-white">
-        قصة <span className="text-gold-500">أمير</span>
+        قصة <span className="text-gold-500">العباسي</span>
       </h1>
 
       <p className="text-lg md:text-2xl text-cream-200 leading-relaxed max-w-3xl mx-auto">
@@ -148,7 +148,7 @@ export default function About() {
           <Container>
             <div className="text-center mb-12">
               <h2 className="text-4xl md:text-5xl font-bold font-display text-white mb-3">
-                لماذا <span className="text-gold-500">أمير</span>؟
+                لماذا <span className="text-gold-500">العباسي</span>؟
               </h2>
               <p className="text-cream-300 text-lg">
                 ما يميزنا عن غيرنا

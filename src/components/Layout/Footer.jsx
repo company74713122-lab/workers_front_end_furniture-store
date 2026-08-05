@@ -19,7 +19,7 @@ export default function Footer() {
               </div>
               <div>
                 <span className="text-2xl font-bold font-display text-white">
-                  أمير
+                  العباسي
                 </span>
                 <p className="text-xs text-gold-500 font-medium">للأثاث الراقي</p>
               </div>
@@ -166,7 +166,7 @@ export default function Footer() {
           {/* حقوق الموقع والروابط السفلية */}
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-cream-400 text-sm border-t border-white/5 pt-6">
             <p>
-              &copy; {new Date().getFullYear()} <span className="text-gold-500 font-semibold">أمير للأثاث الراقي</span>. جميع الحقوق محفوظة.
+              &copy; {new Date().getFullYear()} <span className="text-gold-500 font-semibold">العباسي للأثاث الراقي</span>. جميع الحقوق محفوظة.
             </p>
             <div className="flex gap-6">
               <a href="#" className="hover:text-gold-400 transition-colors">سياسة الخصوصية</a>

@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        // ✅ أمير - الألوان الملكية الجديدة
+        // ✅ العباسي - الألوان الملكية الجديدة
         // الخلفية البنية الداكنة (Wood Background)
         amir: {
           50: '#fdf8f6',
