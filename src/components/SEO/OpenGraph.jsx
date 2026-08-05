@@ -1,12 +1,12 @@
 import { Helmet } from 'react-helmet-async';
 
 export default function OpenGraph({
-  title = 'Amir - أثاث منزلي فاخر',
-  description = 'اكتشف أفخم قطع الأثاث المنزلي في Amir. غرف معيشة، نوم، سفرة، ومكاتب بأعلى جودة وأفضل الأسعار.',
+  title = 'العباسياسي - أثاث منزلي فاخر',
+  description = 'اكتشف أفخم قطع الأثاث المنزلي في العباسياسي. غرف معيشة، نوم، سفرة، ومكاتب بأعلى جودة وأفضل الأسعار.',
   url = 'https://furniture-store-5d3.pages.dev',
   image = 'hhttps://furniture-store-5d3.pages.dev/og-image.jpg',
   type = 'website',
-  siteName = 'Amir',
+  siteName = 'العباسياسي',
   locale = 'ar_AR',
   alternateLocale = ['en_US'],
 }) {
@@ -30,8 +30,8 @@ export default function OpenGraph({
       <meta property="twitter:title" content={title} />
       <meta property="twitter:description" content={description} />
       <meta property="twitter:image" content={image} />
-      <meta property="twitter:site" content="@Amir_furniture" />
-      <meta property="twitter:creator" content="@Amir_furniture" />
+      <meta property="twitter:site" content="@العباسياسي_furniture" />
+      <meta property="twitter:creator" content="@العباسياسي_furniture" />
     </Helmet>
   );
 }

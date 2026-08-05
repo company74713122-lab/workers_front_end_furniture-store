@@ -3,10 +3,10 @@ export const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER || '20101012
 
 // ✅ معلومات المتجر
 export const STORE_INFO = {
-  name: 'Amir',
+  name: 'العباسي',
   tagline: 'أثاث منزلي فاخر',
   description: 'معرض متخصص في الأثاث المنزلي الراقي - نقدم لك أفضل القطع المصنوعة بعناية لتناسب ذوقك الرفيع',
-  email: 'info@Amir.com',
+  email: 'info@AlAbbasi.com',
   phone: WHATSAPP_NUMBER,
   address:"مصر , دمياط",
   whatsapp: WHATSAPP_NUMBER,
@@ -70,9 +70,9 @@ export const STATUS = [
 
 // ✅ روابط التواصل الاجتماعي
 export const SOCIAL_LINKS = {
-  facebook: 'https://facebook.com/Amir',
-  instagram: 'https://instagram.com/Amir',
-  twitter: 'https://twitter.com/Amir',
+  facebook: 'https://facebook.com/Al Abbasi',
+  instagram: 'https://instagram.com/Al Abbasi',
+  twitter: 'https://twitter.com/Al Abbasi',
   whatsapp: 'https://wa.me/2010101270908',
 };
 

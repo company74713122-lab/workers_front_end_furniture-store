@@ -64,7 +64,7 @@ export default function About() {
       
       <div className="bg-black min-h-screen">
      {/* Hero Section */}
-<section className="relative py-20 md:py-32 bg-gradient-to-br from-royal-950 via-black to-amir-950 text-white overflow-hidden">
+<section className="relative py-20 md:py-32 bg-gradient-to-br from-royal-950 via-black to-Al Abbasi-950 text-white overflow-hidden">
   {/* ✅ تم إزالة الدوائر الضوئية */}
 
   <Container className="relative z-10">

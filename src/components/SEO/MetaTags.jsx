@@ -1,12 +1,12 @@
 import { Helmet } from 'react-helmet-async';
 
 export default function MetaTags({
-  title = 'Amir - أثاث منزلي فاخر',
-  description = 'اكتشف أفخم قطع الأثاث المنزلي في Amir. غرف معيشة، نوم، سفرة، ومكاتب بأعلى جودة وأفضل الأسعار. توصيل مجاني وضمان 5 سنوات.',
-  keywords = 'أثاث منزلي, أثاث فاخر, معرض أثاث, Amir, اثاث,غرف معيشة, غرف نوم, أثاث مصر,موبايليا', 
+  title = 'العباسي - أثاث منزلي فاخر',
+  description = 'اكتشف أفخم قطع الأثاث المنزلي في العباسي. غرف معيشة، نوم، سفرة، ومكاتب بأعلى جودة وأفضل الأسعار. توصيل مجاني وضمان 5 سنوات.',
+  keywords = 'أثاث منزلي, أثاث فاخر, معرض أثاث, العباسي, اثاث,غرف معيشة, غرف نوم, أثاث مصر,موبايليا', 
   canonicalUrl = 'https://furniture-store-5d3.pages.dev', 
   robots = 'index, follow',
-  author = 'Amir Furniture Gallery',
+  author = 'العباسي Furniture Gallery',
   viewport = 'width=device-width, initial-scale=1.0',
   charset = 'UTF-8',
   language = 'ar',

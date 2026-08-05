@@ -149,9 +149,9 @@ export default function Home() {
   return (
     <>
     <SEO
-      title="Amir - أثاث منزلي فاخر | معرض الأثاث الراقي في مصر"
-      description="اكتشف أفخم قطع الأثاث المنزلي في Amir. غرف معيشة، نوم، سفرة، ومكاتب بأعلى جودة وأفضل الأسعار. ."
-      keywords="أثاث منزلي, أثاث فاخر, معرض أثاث, Amir, غرف معيشة, غرف نوم"
+      title="العباسي - أثاث منزلي فاخر | معرض الأثاث الراقي في مصر"
+      description="اكتشف أفخم قطع الأثاث المنزلي في العباسي. غرف معيشة، نوم، سفرة، ومكاتب بأعلى جودة وأفضل الأسعار. ."
+      keywords="أثاث منزلي, أثاث فاخر, معرض أثاث, العباسي, غرف معيشة, غرف نوم"
       canonicalUrl="https://furniture-store-5d3.pages.dev"
       ogImage="https://furniture-store-5d3.pages.dev/home-og.jpg"
     />
@@ -176,9 +176,9 @@ export default function Home() {
 
             {/* Title */}
             <h1 className="text-3xl sm:text-4xl md:text-6xl font-black mb-4 leading-tight">
-              <span className="block text-white">امير للاثاث الراقي  </span>
+              <span className="block text-white">العباسي للاثاث الراقي  </span>
               <br />
-              <span className="block gradient-gold"> اصل العمولة</span>
+              <span className="block gradient-gold">اثاث يليق بيك</span>
             </h1>
 
             {/* Description */}
@@ -199,7 +199,7 @@ export default function Home() {
                 to="/products?category=Living Room"
                 className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur text-white px-8 py-4 rounded-full font-bold border-2 border-white/30 hover:bg-white/20 transition-all"
               >
-                استكشف الصالات
+                استكشف الفئات المختلفة
               </Link>
             </div>
 

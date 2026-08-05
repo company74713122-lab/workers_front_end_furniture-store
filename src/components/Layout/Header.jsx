@@ -51,11 +51,7 @@ export default function Header() {
               +20 10 10127090
             </span>
             <span className="text-gold-400/60">|</span>
-            {/* <span>info@Amir.com</span> */}
-          </div>
-          <div className="flex items-center gap-2">
-            {/* <span>✨</span> */}
-            <span> اصل العمولة </span>
+            {/* <span>info@العباسي.com</span> */}
           </div>
         </div>
       </div>
@@ -80,7 +76,7 @@ export default function Header() {
               </div>
               <div className="hidden sm:block">
                 <span className="text-2xl font-bold font-display text-royal-950 tracking-tight">
-                  Amir
+                  العباسي
                 </span>
                 <p className="text-[10px] text-gold-700 font-medium tracking-widest -mt-1">
                   ROYAL FURNITURE

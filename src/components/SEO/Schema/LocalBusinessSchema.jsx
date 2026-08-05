@@ -4,7 +4,7 @@ export default function LocalBusinessSchema() {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'FurnitureStore',
-    name: 'Amir Furniture Gallery',
+    name: 'العباسياسي Furniture Gallery',
     // image: 'hhttps://furniture-store-5d3.pages.dev/store-image.jpg',
     '@id': 'https://furniture-store-5d3.pages.dev',
     url: 'https://furniture-store-5d3.pages.dev',
@@ -38,9 +38,9 @@ export default function LocalBusinessSchema() {
       },
     ],
     sameAs: [
-      'https://facebook.com/Amir',
-      'https://instagram.com/Amir',
-      'https://twitter.com/Amir',
+      'https://facebook.com/العباسياسي',
+      'https://instagram.com/العباسياسي',
+      'https://twitter.com/العباسياسي',
     ],
   };
 

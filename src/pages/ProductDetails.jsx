@@ -164,7 +164,7 @@ export default function ProductDetails() {
   const handleShare = async () => {
     const shareData = {
       title: product.name,
-      text: `شاهد هذا المنتج الرائع من Amir: ${product.name}`,
+      text: `شاهد هذا المنتج الرائع من العباسي: ${product.name}`,
       url: window.location.href,
     };
 
@@ -183,9 +183,9 @@ export default function ProductDetails() {
   return (
     <>
     <SEO
-      title={`${product.name} | Amir - أثاث فاخر`}
+      title={`${product.name} | العباسي - أثاث فاخر`}
       description={`${product.name} بسعر ${product.offerPrice || product.price} جنيه. ${product.material} ${product.color}. ${product.description.substring(0, 150)}...`}
-      keywords={`${product.name}, ${product.category}, ${product.material}, ${product.color}, أثاث, Amir`}
+      keywords={`${product.name}, ${product.category}, ${product.material}, ${product.color}, أثاث, العباسي`}
       canonicalUrl={productUrl}
       ogImage={productImage}
       ogType="product"
