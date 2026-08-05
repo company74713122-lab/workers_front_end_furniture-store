@@ -323,7 +323,7 @@ export default function Products() {
                             : 'hover:bg-royal-50 text-royal-800'
                         }`}
                       >
-                        <span>✨</span>
+                        <span></span>
                         <span>الكل</span>
                       </button>
                     </li>
