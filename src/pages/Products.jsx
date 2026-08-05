@@ -100,7 +100,7 @@ export default function Products() {
     }
   };
 
-  const showToast = (message, icon = Sparkles) => {
+  const showToast = (message, icon = "⭐") => {
     setToast({ show: true, message, icon });
     setTimeout(() => setToast({ show: false, message: '', icon: null }), 3000);
   };
@@ -111,7 +111,7 @@ export default function Products() {
     newParams.delete('maxPrice');
     newParams.set('page', '1');
     setSearchParams(newParams);
-    showToast(' عرض جميع الأسعار', Sparkles);
+    showToast(' عرض جميع الأسعار', '⭐');
   };
 
   // ✅ تخطي الفلاتر والانتقال مباشرة للمنتجات
@@ -121,7 +121,7 @@ export default function Products() {
         behavior: 'smooth',
         block: 'start',
       });
-      showToast('👇 تخطي الفلاتر - استمتع بالتسوق!', Sparkles);
+      showToast('👇 تخطي الفلاتر - استمتع بالتسوق!', '⭐');
     }
   };
 
@@ -130,14 +130,14 @@ export default function Products() {
 
     const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
-    let nextStep = { step: 'done', ref: productsRef, message: '🎉 رائع! شاهد المنتجات المتاحة', icon: Sparkles };
+    let nextStep = { step: 'done', ref: productsRef, message: '🎉 رائع! شاهد المنتجات المتاحة', icon: '⭐' };
 
     if (!category) {
       nextStep = { step: 'category', ref: categoryRef, message: '📂 اختر الفئة المناسبة أولاً', icon: Filter };
     } else if (!color) {
-      nextStep = { step: 'color', ref: colorRef, message: '🎨 اختر اللون المفضل لديك', icon: Sparkles };
+      nextStep = { step: 'color', ref: colorRef, message: '🎨 اختر اللون المفضل لديك', icon: '⭐' };
     } else if (!size) {
-      nextStep = { step: 'size', ref: sizeRef, message: '📏 حدد الحجم المناسب', icon: Sparkles };
+      nextStep = { step: 'size', ref: sizeRef, message: '📏 حدد الحجم المناسب', icon: '⭐' };
     }
 
     setCurrentStep(nextStep.step);
